@@ -1,28 +1,22 @@
-// import * as bcrypt from 'bcrypt';
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-Entity()
+@Entity()
 export class User {
     @PrimaryGeneratedColumn()
-    id : number;
+    id: number;
 
-    @Column({ length: 500})
+    @Column({ length: 500 })
     name: string;
 
-    @Column({ unique: true, nullable: false})
+    @Column({ unique: true, nullable: false })
     email: string;
 
-    @Column({ nullable: false})
+    @Column({ nullable: false })
     password: string;
 
-    @Column({ default: "user"})
+    @Column({ default: 'user' })
     role: string;
 
-    // async hashPassword() {
-    //     this.password = await bcrypt.hash(this.password, 10);
-    // }
+    
 
-    // async comparePassword(attempt: string): Promise<boolean> {
-    //     return await bcrypt.compare(attempt, this.password);
-    // }
 }
