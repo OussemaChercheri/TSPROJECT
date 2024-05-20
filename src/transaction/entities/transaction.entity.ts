@@ -21,7 +21,9 @@ export class Transaction {
     @Column('simple-array', { nullable: true })
     tags: string[];
 
-    @ManyToOne(() => User, (user: User) => user.transactions)
+    @ManyToOne(() => User, user => user.transactions, {
+        eager: true,
+    })
     @JoinColumn({ name: 'userId' })
     user: User;
 
