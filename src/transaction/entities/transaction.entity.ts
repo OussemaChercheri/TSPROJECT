@@ -24,9 +24,8 @@ export class Transaction {
     @ManyToOne(() => User, user => user.transactions, {
         eager: true,
     })
+
     @JoinColumn({ name: 'userId' })
     user: User;
 
-    @Column()
-    userId: number;
 }
