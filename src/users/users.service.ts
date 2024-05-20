@@ -8,14 +8,23 @@ import { User } from './entities/user.entity';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private readonly usersRepository: Repository<User>
-  ){}
+    private readonly usersRepository: Repository<User>,
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
-    return await this.usersRepository.save(createUserDto);
+    const user = this.usersRepository.create(createUserDto);
+    return await this.usersRepository.save(user);
   }
 
-  async findOneByEmail (email:string) {
+  async findAll() {
+    return await this.usersRepository.find();
+  }
+
+  async findOneByEmail(email: string) {
     return await this.usersRepository.findOneBy({ email });
+  }
+
+  async findById(id: number) {
+    return await this.usersRepository.findOneBy({ id });
   }
 }

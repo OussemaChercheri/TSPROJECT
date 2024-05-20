@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from '../../users/entities/user.entity';
 
 @Entity()
 export class Transaction {
@@ -8,7 +9,7 @@ export class Transaction {
     @Column()
     montant: number;
 
-    @CreateDateColumn()
+    @Column()
     date: Date;
 
     @Column()
@@ -20,6 +21,10 @@ export class Transaction {
     @Column('simple-array', { nullable: true })
     tags: string[];
 
-    @DeleteDateColumn()
-    deletedAt: Date;
+    @ManyToOne(() => User, (user: User) => user.transactions)
+    @JoinColumn({ name: 'userId' })
+    user: User;
+
+    @Column()
+    userId: number;
 }

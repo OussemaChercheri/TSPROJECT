@@ -2,6 +2,9 @@ import { IsArray, IsDateString, IsInt, IsOptional, IsString } from 'class-valida
 
 export class CreateTransactionDto {
     @IsInt()
+    userId: number;
+
+    @IsInt()
     montant: number;
 
     @IsDateString()
@@ -12,6 +15,7 @@ export class CreateTransactionDto {
     categorie: string;
 
     @IsString()
+    @IsOptional()
     description: string;
 
     @IsArray()

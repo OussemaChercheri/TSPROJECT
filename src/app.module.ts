@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
+import { Transaction } from './transaction/entities/transaction.entity';
 import { TransactionModule } from './transaction/transaction.module';
+import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -16,10 +17,9 @@ import { UsersModule } from './users/users.module';
       username: 'root',
       password: '',
       database: 'tracker-db',
-      autoLoadEntities: true,
+      entities: [User, Transaction],  // Explicitly list the entities
       synchronize: true,
     }),
-    ConfigModule.forRoot({ isGlobal: true}),
     UsersModule,
     AuthModule,
     TransactionModule,
