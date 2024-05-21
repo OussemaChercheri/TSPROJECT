@@ -7,10 +7,10 @@ export class CreateTransactionDto {
 
     @IsDateString()
     @IsOptional()
-    date: string;
+    date: Date;
 
-    @IsString()
-    categorie: string;
+    @IsInt()
+    categoryId: number;
 
     @IsString()
     @IsOptional()
@@ -22,4 +22,5 @@ export class CreateTransactionDto {
 
     @IsInt()
     userId: number;
+
 }

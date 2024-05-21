@@ -30,4 +30,5 @@ export class Transaction {
     })
     @JoinColumn({ name: 'userId' })
     user: User;
+
 }
