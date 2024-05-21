@@ -15,7 +15,12 @@ export class TransactionService {
 
   ) {}
   async create(createTransactionDto: CreateTransactionDto) {
-    const transaction = this.transactionRepository.create(createTransactionDto);
+    const { userId, ...transactionData } = createTransactionDto;
+    const user = await this.usersService.findById(userId);
+    const transaction = this.transactionRepository.create({
+      ...transactionData,
+      user,
+    })
     return await this.transactionRepository.save(transaction);
   }
 
@@ -34,4 +39,6 @@ export class TransactionService {
   async remove(id: number) {
     return await this.transactionRepository.delete(id);
   }
+
+  
 }

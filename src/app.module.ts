@@ -7,6 +7,7 @@ import { Transaction } from './transaction/entities/transaction.entity';
 import { TransactionModule } from './transaction/transaction.module';
 import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     AuthModule,
     TransactionModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

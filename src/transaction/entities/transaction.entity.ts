@@ -1,3 +1,4 @@
+import { Category } from 'src/category/entities/category.entity';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 
@@ -12,8 +13,11 @@ export class Transaction {
     @Column()
     date: Date;
 
-    @Column()
-    categorie: string;
+    @ManyToOne(() => Category, category => category.transactions, {
+        eager: true,
+    })
+    @JoinColumn({ name: 'categoryId'})
+    category: Category;
 
     @Column({ nullable: true })
     description: string;
@@ -24,8 +28,6 @@ export class Transaction {
     @ManyToOne(() => User, user => user.transactions, {
         eager: true,
     })
-
     @JoinColumn({ name: 'userId' })
     user: User;
-
 }

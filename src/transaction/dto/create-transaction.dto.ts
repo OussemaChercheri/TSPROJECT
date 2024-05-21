@@ -19,4 +19,7 @@ export class CreateTransactionDto {
     @IsArray()
     @IsOptional()
     tags: string[];
+
+    @IsInt()
+    userId: number;
 }
